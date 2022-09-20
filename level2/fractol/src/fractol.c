@@ -6,13 +6,19 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:40:46 by jsantann          #+#    #+#             */
-/*   Updated: 2022/09/07 18:03:23 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/09/20 02:02:26 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
-#include <math.h>
+
+double absolute_complex(t_complex a)
+{
+	double abs;
+
+	abs = sqrt(a.f * a.f + a.i * a.i);
+	return (abs);
+}
 
 t_complex sum_complex(t_complex a, t_complex b)
 {
@@ -27,28 +33,18 @@ t_complex pow_complex(t_complex a)
 {
 	t_complex res;
 
-	res.f = a.f * a.f;
-	res.i = a.i * a.f;
+	res.f = a.f * a.f - a.i * a.i;
+	res.i = 2 * a.f * a.i;
 	return (res);
 }
 
 int	main(void)
 {
-	t_complex z;
-	t_complex i;
-	int	counter;
-
-	counter = 50;
-	z.f = 0;
-	z.i = 0;
-	while(counter-- > 0)
-	{
-		z.f = z.f * z.f + 1 + i;
-		printf("%f\n", a.f);
-	   if(a.f > 2)
-	   {
-		   printf("Infinite");
-		   break;
-	   }	   
-	}
+	data_t	data;
+	if ((data.mlx_ptr = mlx_init()) == NULL)
+		return (EXIT_FAILURE);
+	if ((data.mlx_win = mlx_new_window(data.mlx_ptr, 640, 480, "Hello World")) == NULL)
+		return (EXIT_FAILURE);
+	mlx_loop(data.mlx_ptr);
+	return (EXIT_SUCCESS);
 }
