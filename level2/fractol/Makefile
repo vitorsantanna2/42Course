@@ -46,6 +46,7 @@ clean:
 fclean:		clean
 			@ ${RM} ${NAME}
 			@ rm libmlx.a
+			@ rm mlx/libmlx.a
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 re:			fclean all
 
