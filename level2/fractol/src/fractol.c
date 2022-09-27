@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:40:46 by jsantann          #+#    #+#             */
-/*   Updated: 2022/09/20 02:02:26 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:12:55 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,59 @@ t_complex pow_complex(t_complex a)
 	return (res);
 }
 
+int	mandelbrot_escape(t_complex x)
+{
+	int iterations;
+	t_complex	z;
+
+	iterations = 0;
+	z.f = 0;
+	z.i = 0;
+
+	while (iterations < 150)
+	{
+		if (absolute_complex(z) > 2)
+		{
+			return (1);
+		}
+		z = sum_complex(pow_complex(z), x);
+		iterations++;
+	}
+	return (0);
+}
+
+
+
 int	main(void)
 {
-	data_t	data;
-	if ((data.mlx_ptr = mlx_init()) == NULL)
-		return (EXIT_FAILURE);
-	if ((data.mlx_win = mlx_new_window(data.mlx_ptr, 640, 480, "Hello World")) == NULL)
-		return (EXIT_FAILURE);
-	mlx_loop(data.mlx_ptr);
-	return (EXIT_SUCCESS);
+	t_complex x;
+	void *mlx_ptr;
+	void *win_ptr;
+	int	counter;
+
+	counter = 0;
+	x.f = -2;
+	x.i = 0;
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "Hello world!");
+	while (counter < 400)
+	{
+		x.f = x.f + 0.0075;
+		if (mandelbrot_escape(x))
+			mlx_pixel_put(mlx_ptr, win_ptr, 0, counter, 0x000000FF);
+		else
+			mlx_pixel_put(mlx_ptr, win_ptr, 0, counter, 0x00FFFFFF);
+		counter++;
+	}
+	counter = 0;
+	while (counter < 400)
+	{
+		x.f = x.f + 0.0075;
+		if (mandelbrot_escape(x))
+			mlx_pixel_put(mlx_ptr, win_ptr, counter, 200, 0x000000FF);
+		else
+			mlx_pixel_put(mlx_ptr, win_ptr, counter, 200, 0x00FFFFFF);
+		counter++;	
+	}
+	mlx_loop(mlx_ptr);
 }

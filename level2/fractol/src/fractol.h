@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:44:40 by jsantann          #+#    #+#             */
-/*   Updated: 2022/09/19 15:29:39 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/09/23 07:56:59 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -17,13 +17,13 @@
 #include <math.h>
 
 
-typedef struct	data_s
+typedef struct	s_data
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
-}			data_t;
+}			t_data;
 
-typedef struct complex_number
+typedef struct s_complexnumber
 {
 	double	f;
 	double	i;

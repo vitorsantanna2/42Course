@@ -50,6 +50,9 @@ fclean:		clean
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 re:			fclean all
 
-.PHONY:		all clean fclean re
+run:
+	./$(NAME)
+
+.PHONY:		all clean fclean re run
 
 
