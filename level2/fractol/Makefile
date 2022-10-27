@@ -5,12 +5,17 @@ NAME        := fractol
 CC        := cc
 FLAGS    := -Wall -Wextra -Werror 
 RM		    := rm -f
+LIBFT		:= libft.a
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
 SRCS        :=      src/fractol.c \
+					src/draw_mandelbrot.c \
+					src/fractol_utils.c \
+					src/hooks.c	\
+					src/colors.c
                           
 OBJS        := $(SRCS:.c=.o)
 
@@ -34,9 +39,11 @@ CYAN 		:= \033[1;36m
 ###############################################################################
 $(NAME): ${OBJS}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			@ $(MAKE) -s -C libft all
+			@ cp ./libft/libft.a .
 			@ $(MAKE) -C mlx all &> /dev/null
 			@ cp ./mlx/libmlx.a .
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 all:		${NAME}
 clean:
@@ -45,13 +52,18 @@ clean:
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 fclean:		clean
 			@ ${RM} ${NAME}
+			@ rm libft.a
+			@ rm libft/libft.a
 			@ rm libmlx.a
 			@ rm mlx/libmlx.a
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 re:			fclean all
 
-run:
-	./$(NAME)
+run: all
+	./$(NAME) Mandelbrot
+
+mandelbrot: all
+			./$(NAME) Mandelbrot
 
 .PHONY:		all clean fclean re run
 

@@ -6,91 +6,49 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:40:46 by jsantann          #+#    #+#             */
-/*   Updated: 2022/09/27 18:12:55 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:09:06 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double absolute_complex(t_complex a)
+void	initializable_vars(t_data *img)
 {
-	double abs;
-
-	abs = sqrt(a.f * a.f + a.i * a.i);
-	return (abs);
+	img->minim = -1.5 * img->zoom;
+	img->maxim = 1.5 * img->zoom;
+	img->minre = -1.5 * img->zoom;
+	img->maxre = 1.5 * img->zoom;
 }
 
-t_complex sum_complex(t_complex a, t_complex b)
+void	start_fractol(t_data *img)
 {
-	t_complex res;
-
-	res.f = a.f + b.f;
-	res.i = a.i + b.i;
-	return (res);
+	img->mlx_ptr = mlx_init();
+	img->win_ptr = mlx_new_window(img->mlx_ptr, 900, 900, "Fractol");
+	img->img = mlx_new_image(img->mlx_ptr, 900, 900);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	draw_mandelbrot(img);
 }
 
-t_complex pow_complex(t_complex a)
+int	main(int argc, char **argv)
 {
-	t_complex res;
+	t_data	img;
 
-	res.f = a.f * a.f - a.i * a.i;
-	res.i = 2 * a.f * a.i;
-	return (res);
-}
-
-int	mandelbrot_escape(t_complex x)
-{
-	int iterations;
-	t_complex	z;
-
-	iterations = 0;
-	z.f = 0;
-	z.i = 0;
-
-	while (iterations < 150)
+	if (argc <= 2 && argc !=1)
 	{
-		if (absolute_complex(z) > 2)
+		if (ft_strnstr(argv[1], "Mandelbrot", 10))
 		{
-			return (1);
+			img.zoom = 1.0;
+			initializable_vars(&img);
+			start_fractol(&img);
+			mlx_mouse_hook(img.win_ptr, mouse_hook, &img);
+			mlx_hook(img.win_ptr, 17, 0, close_hook, &img);
+			mlx_loop(img.mlx_ptr);
 		}
-		z = sum_complex(pow_complex(z), x);
-		iterations++;
-	}
-	return (0);
-}
-
-
-
-int	main(void)
-{
-	t_complex x;
-	void *mlx_ptr;
-	void *win_ptr;
-	int	counter;
-
-	counter = 0;
-	x.f = -2;
-	x.i = 0;
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "Hello world!");
-	while (counter < 400)
-	{
-		x.f = x.f + 0.0075;
-		if (mandelbrot_escape(x))
-			mlx_pixel_put(mlx_ptr, win_ptr, 0, counter, 0x000000FF);
 		else
-			mlx_pixel_put(mlx_ptr, win_ptr, 0, counter, 0x00FFFFFF);
-		counter++;
+			argument_invalid();
 	}
-	counter = 0;
-	while (counter < 400)
+	else
 	{
-		x.f = x.f + 0.0075;
-		if (mandelbrot_escape(x))
-			mlx_pixel_put(mlx_ptr, win_ptr, counter, 200, 0x000000FF);
-		else
-			mlx_pixel_put(mlx_ptr, win_ptr, counter, 200, 0x00FFFFFF);
-		counter++;	
+		argument_invalid();
 	}
-	mlx_loop(mlx_ptr);
 }
