@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 09:43:14 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/03 09:43:45 by jsantann         ###   ########.fr       */
+/*   Created: 2022/08/18 02:27:21 by jsantann          #+#    #+#             */
+/*   Updated: 2022/08/23 20:19:39 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-typedef struct s_list
+int	ft_toupper(int c)
 {
-	void *content;
-	struct s_list *next;
-}t_list;
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	return (c);
+}
