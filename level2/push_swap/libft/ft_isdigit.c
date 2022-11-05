@@ -6,15 +6,27 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 02:20:20 by jsantann          #+#    #+#             */
-/*   Updated: 2022/08/18 02:20:26 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:12:41 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char **argv)
 {
-	if (c >= 48 && c <= 57)
+	int i;
+	int j;
+
+	i = 1;
+	while (argv[i])
 	{
-		return (1);
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
+				j++;
+			else
+				return (0);
+		}
+		i++;
 	}
-	return (0);
+	return (1);
 }

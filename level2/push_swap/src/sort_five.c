@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.h                                             :+:      :+:    :+:   */
+/*   sort_five.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 09:43:14 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/04 21:44:55 by jsantann         ###   ########.fr       */
+/*   Created: 2022/11/04 19:22:05 by jsantann          #+#    #+#             */
+/*   Updated: 2022/11/05 15:55:49 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define PUSH_H
+#include "push.h"
 
-#include "../libft/libft.h"
-
-void	print_stack(t_list *stack);
-void	swap(t_list **stack, char s);
-void	rotate(t_list **stack, char s);
-void	rrotate(t_list **stack, char s);
-void	push(t_list **src, t_list **dst, char s);
-int		is_sorted(t_list **stack);
-int		is_repeated(char **argv);
-void	sort_small_stack(t_list **stacka, t_list **stackb);
-void	sort_little_stack(t_list **stack);
+void	sort_small_stack(t_list **stacka, t_list **stackb)
+{
+	push(stacka, stackb, 'b');
+	push(stacka, stackb, 'b');
+	sort_little_stack(stacka);
+	push(stackb, stacka, 'a');
+	sort_little_stack(stacka);
+	push(stackb, stacka, 'a');
+	//print_stack(*stacka);
+	//print_stack(*stackb);
+}

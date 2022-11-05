@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:48:44 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/03 19:34:37 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:13:11 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -25,7 +25,7 @@ typedef struct s_list
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
-int		ft_isdigit(int c);
+int		ft_isdigit(char **argv);
 int		ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
