@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:04:39 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/05 15:05:40 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:15:55 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	swap(t_list **stack, char s)
 	s_node->next = f_node;
 	*stack = s_node;
 	if (s == 'a')
-		ft_printf("sa\n");
+		write(1, "sa\n", 3);
 	else
-		ft_printf("sb\n");
+		write(1, "sb\n", 3);
 }
 
 void	rotate(t_list **stack, char s)
@@ -41,9 +41,9 @@ void	rotate(t_list **stack, char s)
 	f_node->next = NULL;
 	*stack = s_node;
 	if (s == 'a')
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 	else
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 }
 
 void	rrotate(t_list **stack, char s)
@@ -59,9 +59,9 @@ void	rrotate(t_list **stack, char s)
 	l_node->next = NULL;
 	*stack = f_node;
 	if (s == 'a')
-		ft_printf("rra\n");
+		write(1, "rra\n", 4);
 	else
-		ft_printf("rrb\n");
+		write(1, "rrb\n", 4);
 }
 
 void	push(t_list **src, t_list **dst, char s)
@@ -84,7 +84,7 @@ void	push(t_list **src, t_list **dst, char s)
 	tmp2 = tmp2->next;
 	*src = tmp2;
 	if (s == 'a')
-		ft_printf("pa\n");
+		write(1, "pa\n", 3);
 	else
-		ft_printf("pb\n");
+		write(1, "pb\n", 3);
 }

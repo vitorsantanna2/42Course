@@ -16,12 +16,13 @@ SRCS        :=      src/start.c \
 					src/sort_three.c \
 					src/sort_five.c \
 					src/sort_utils.c \
+					src/last_bigger_digit.c \
 					src/swap_rotate_push.c 
                           
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ################################################################################
 #                                  COLORS                                      #
@@ -42,7 +43,7 @@ $(NAME): ${OBJS}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
 			@ $(MAKE) -s -C libft all
 			@ cp ./libft/libft.a .
-			$(CC) $(CFLAGS) -g -o $(NAME) $(OBJS) $(LIBFT)
+			@ $(CC) $(CFLAGS) -g -o $(NAME) $(OBJS) $(LIBFT)
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 all:		${NAME}
 
