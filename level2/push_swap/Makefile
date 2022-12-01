@@ -17,6 +17,7 @@ SRCS        :=      src/start.c \
 					src/sort_five.c \
 					src/sort_utils.c \
 					src/last_bigger_digit.c \
+					src/radix.c	\
 					src/swap_rotate_push.c 
                           
 OBJS        := $(SRCS:.c=.o)

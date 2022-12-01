@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:32:10 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/30 22:00:57 by jsantann         ###   ########.fr       */
+/*   Created: 2022/11/24 18:58:40 by jsantann          #+#    #+#             */
+/*   Updated: 2022/11/30 22:02:57 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push.h"
 
-t_list	*ft_lstnew(int content, int index)
+int	get_index(int n, int argc, char **argv)
 {
-	t_list	*out;
+	int	i;
+	int position;
 
-	out = malloc(sizeof(t_list));
-	if (!out)
-		return (NULL);
-	out->index = index;
-	out->content = content;
-	out->next = NULL;
-	return (out);
+	i = 0;
+	position = 0;
+	while (i < argc - 1)
+	{
+		if (n > ft_atoi(argv[1 + i]))
+		{
+			position++;
+		}
+		i++;
+	}
+	return (position);
+}
+
+void radix(t_list **stacka, t_list **stackb)
+{
+	t_list *tmp;
+	t_list *tmp2;
+
+	tmp = *stacka;
+	tmp2 = *stackb;
+
+	(void)(tmp);
+	(void)(tmp2);
+	printf("teste");
 }

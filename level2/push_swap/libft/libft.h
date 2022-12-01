@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:48:44 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/04 19:13:11 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/11/30 22:08:01 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -18,6 +18,7 @@
 
 typedef struct s_list
 {
+	int			index;
 	int			content;
 	struct s_list	*next;
 }	t_list;
@@ -56,7 +57,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(int content, int index);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
@@ -64,7 +65,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(int));
 void	ft_lstclear(t_list **lst, void (*del)(int));
 void	ft_lstiter(t_list *lst, void (*f)(int));
-void	*ft_lstend(t_list **lst, int content);
+void	*ft_lstend(t_list **lst, int content, int index);
 int		ft_hexadecimal(unsigned int nbr, char *base);
 int		ft_pointer(void *arg, char *s);
 int		ft_printf(const char *format, ...);
