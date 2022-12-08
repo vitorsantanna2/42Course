@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:26:19 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/30 22:09:23 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/07 23:00:02 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ void	print_stack(t_list *stack)
 	t_list	*temp;
 
 	temp = stack;
+	ft_printf("Ind | ");
+	ft_printf("Val | ");
+	ft_printf("Adr\n");
 	while (temp)
 	{
-		ft_printf("%i", temp->content);
-		ft_printf(" | %p\n", temp->content);
+		ft_printf("%i   | ", temp->index);
+		ft_printf("%i   | ", temp->content);
+		ft_printf("%p\n", temp->content);
 		temp = temp->next;
 	}
 	write(1, "\n", 1);
@@ -28,12 +32,50 @@ void	print_stack(t_list *stack)
 
 void	sort(int argc, t_list **stacka, t_list **stackb)
 {
-	if (argc <= 4)
+	if (is_sorted(stacka))
+		freestack(stacka);
+	else if (argc <= 4)
+	{
 		sort_little_stack(stacka);
+		freestack(stacka);
+	}
 	else if (argc <= 6)
+	{
 		sort_small_stack(stacka, stackb);
+		freestack(stacka);
+	}
 	else
+	{
 		radix(stacka, stackb);
+		freestack(stacka);
+	}
+}
+
+void	freestack(t_list **lst)
+{
+	t_list	*next;
+	t_list	*stack;
+
+	stack = *lst;
+	while (stack)
+	{
+		next = stack->next;
+		free(stack);
+		stack = next;
+	}
+}
+
+int	validations(int argc, char **argv)
+{
+	if (argc < 2)
+		return (0);
+	else if (!ft_isdigit(argv) || is_repeated(argv))
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	else
+		return (1);
 }
 
 int	main(int argc, char **argv)
@@ -41,37 +83,22 @@ int	main(int argc, char **argv)
 	int		i;
 	t_list	*stacka;
 	t_list	*stackb;
-	int	position;
+	int		position;
 
-	if (!ft_isdigit(argv) || is_repeated(argv))
-	{
-		ft_printf("Error\n");
+	if (!validations(argc, argv))
 		return (0);
-	}
-	else if (argc < 2)
-		return (1);
 	else
 	{
-		stacka = NULL;
-		stackb = NULL;
-		i = 1;
-		position = 0;
-		while (i < argc - 1)
-		{
-			position = get_index(ft_atoi(argv[1 + i]), argc, argv);
-			if (stacka == NULL)
-				stacka = ft_lstnew(ft_atoi(argv[1]), position);
-			else
-				ft_lstend(&stacka, ft_atoi(argv[1 + i++]), position);
-		}
 		i = 0;
-		while (i < argc -1)
+		position = 0;
+		while (i++ < argc - 1)
 		{
-			get_index(ft_atoi(argv[1 + i]), argc, argv);
-			i++;
+			position = get_index(ft_atol(argv[i]), argc, argv);
+			if (stacka == NULL)
+				stacka = ft_lstnew(ft_atol(argv[i]), position);
+			else
+				ft_lstend(&stacka, ft_atol(argv[i]), position);
 		}
-		if (is_sorted(&stacka))
-			return (1);
 		sort(argc, &stacka, &stackb);
 	}
 }

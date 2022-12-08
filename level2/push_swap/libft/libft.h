@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:48:44 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/30 22:08:01 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:23:02 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -18,8 +18,8 @@
 
 typedef struct s_list
 {
-	int			index;
-	int			content;
+	int				index;
+	int				content;
 	struct s_list	*next;
 }	t_list;
 

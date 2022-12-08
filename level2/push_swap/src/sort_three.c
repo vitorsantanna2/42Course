@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 20:10:11 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/05 16:42:10 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/07 21:04:41 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push.h"
@@ -25,7 +25,9 @@ void	case1(t_list **stack)
 		{
 			swap(stack, 'a');
 			if (is_sorted(stack))
+			{
 				return ;
+			}
 			else if (temp->content > ft_lstlast(*stack)->content)
 				rrotate(stack, 'a');
 		}
@@ -39,7 +41,9 @@ void	sort_little_stack(t_list **stack)
 	temp = *stack;
 	case1(stack);
 	if (is_sorted(stack))
+	{
 		return ;
+	}
 	if (temp->content > ft_lstlast(*stack)->content)
 	{
 		rrotate(stack, 'a');

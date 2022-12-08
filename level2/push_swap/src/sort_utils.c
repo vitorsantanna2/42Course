@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:24:53 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/04 21:28:22 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/07 23:24:58 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	is_sorted(t_list **stack)
 	while (temp->next)
 	{
 		if (temp->content > temp->next->content)
+		{
 			return (0);
+		}
 		else
 			temp = temp->next;
 	}
@@ -45,4 +47,29 @@ int	is_repeated(char **argv)
 		i++;
 	}
 	return (0);
+}
+
+long	ft_atol(char *str)
+{
+	long	result;
+	int		i;
+	int		sign;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = sign * -1;
+		i++;
+	}
+	while (str[i])
+		result = result * 10 + str[i++] - '0';
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		ft_printf("Error");
+		exit(-1);
+	}
+	return (result * sign);
 }

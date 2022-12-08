@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:32:51 by jsantann          #+#    #+#             */
-/*   Updated: 2022/11/30 22:32:53 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/07 22:35:07 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,14 @@ void	push(t_list **src, t_list **dst, char s)
 	tmp = *dst;
 	tmp3 = NULL;
 	if (dst == NULL)
-		tmp = ft_lstnew(tmp2->content);
+		tmp = ft_lstnew(tmp2->content, tmp2->index);
 	else
 	{
-		tmp3 = ft_lstnew(tmp2->content);
+		tmp3 = ft_lstnew(tmp2->content, tmp2->index);
 		ft_lstadd_front(&tmp, tmp3);
 	}
 	*dst = tmp;
+	free(tmp2);
 	tmp2 = tmp2->next;
 	*src = tmp2;
 	if (s == 'a')
