@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:26:19 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/07 23:00:02 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:29:32 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	validations(int argc, char **argv)
 {
 	if (argc < 2)
 		return (0);
-	else if (!ft_isdigit(argv) || is_repeated(argv))
+	else if (!ft_isdigit(argv) || is_repeated(argv) || !is_bigger(argv))
 	{
 		ft_printf("Error\n");
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:17:34 by jsantann          #+#    #+#             */
-/*   Updated: 2022/08/23 20:18:02 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:45:13 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -19,15 +19,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	var1 = (unsigned char *)(s1);
 	var2 = (unsigned char *)(s2);
 	if (n == 0)
-	{
 		return (0);
-	}
 	while (n > 0 && (*var1 != 0 || *var2 != 0))
 	{
+		if (var1[0] == '+')
+			var1++;
+		if (var2[0] == '+')
+			var2++;
 		if (*var1 != *var2)
-		{
 			return (*var1 - *var2);
-		}
 		var1++;
 		var2++;
 		n--;

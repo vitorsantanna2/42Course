@@ -6,11 +6,12 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:24:53 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/07 23:24:58 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/08 22:32:32 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push.h"
+#include "limits.h"
 
 int	is_sorted(t_list **stack)
 {
@@ -49,11 +50,34 @@ int	is_repeated(char **argv)
 	return (0);
 }
 
+int	is_bigger(char **str)
+{
+	int	i;
+
+	i = 1;
+	while (str[i])
+	{
+		if (str[i][0] == '-' || str[i][0] == '+')
+		{
+			if (ft_strlen(str[i]) > 11)
+				return (0);
+		}
+		else
+		{
+			if (ft_strlen(str[i]) > 10)
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 long	ft_atol(char *str)
 {
 	long	result;
-	int		i;
+	long	i;
 	int		sign;
+	long	temp;
 
 	i = 0;
 	result = 0;
@@ -66,10 +90,12 @@ long	ft_atol(char *str)
 	}
 	while (str[i])
 		result = result * 10 + str[i++] - '0';
-	if (result > INT_MAX || result < INT_MIN)
+	
+	temp = result * sign;
+	if ((temp > INT_MAX) || (temp < INT_MIN))
 	{
 		ft_printf("Error");
-		exit(-1);
+		exit(0);
 	}
 	return (result * sign);
 }
