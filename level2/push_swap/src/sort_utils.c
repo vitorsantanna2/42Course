@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:24:53 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/08 22:32:32 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/08 22:36:17 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ long	ft_atol(char *str)
 	}
 	while (str[i])
 		result = result * 10 + str[i++] - '0';
-	
 	temp = result * sign;
 	if ((temp > INT_MAX) || (temp < INT_MIN))
 	{
