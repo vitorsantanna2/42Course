@@ -3,7 +3,7 @@
 
 NAME        := fractol
 CC        := cc
-FLAGS    := -Wall -Wextra -Werror 
+FLAGS    := -Wall -Wextra -Werror -Ofast
 RM		    := rm -f
 LIBFT		:= libft.a
 
@@ -11,16 +11,18 @@ LIBFT		:= libft.a
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS        :=      src/fractol.c \
+SRCS        :=      src/start.c \
 					src/draw_mandelbrot.c \
+					src/draw_julia.c \
 					src/fractol_utils.c \
 					src/hooks.c	\
-					src/colors.c
+					src/colors.c \
+					src/validations.c
                           
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	@ ${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ################################################################################
 #                                  COLORS                                      #
@@ -38,13 +40,17 @@ CYAN 		:= \033[1;36m
 #							FUNCTIONS									 	  #
 ###############################################################################
 $(NAME): ${OBJS}
-			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			@ echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}LIBFT ${CLR_RMV}..."
 			@ $(MAKE) -s -C libft all
 			@ cp ./libft/libft.a .
+			@ echo "$(GREEN)LIBFT created✔️"
+			@ echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}MLX ${CLR_RMV}..."
 			@ $(MAKE) -C mlx all &> /dev/null
+			@ echo "$(GREEN)MLX created✔️"
+			@ echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
 			@ cp ./mlx/libmlx.a .
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
-			@echo "$(GREEN)$(NAME) created[0m ✔️"
+			@ $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
+			@ echo "$(GREEN)$(NAME) created[0m ✔️"
 all:		${NAME}
 clean:
 			@ ${RM} *.o */*.o */*/*.o

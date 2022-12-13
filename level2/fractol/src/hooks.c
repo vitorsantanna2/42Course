@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:26:13 by jsantann          #+#    #+#             */
-/*   Updated: 2022/10/25 08:35:28 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:22:43 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,55 @@
 
 int	reset_hook(t_data *img)
 {
-		img->img = mlx_new_image(img->mlx_ptr, 900, 900);
-		img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	img->img = mlx_new_image(img->mlx_ptr, 900, 900);
+	img->addr = mlx_get_data_addr(img->img,
+			&img->bits_per_pixel, &img->line_length, &img->endian);
+	if (!ft_strcmp(img->name, "JULIA"))
 		draw_mandelbrot(img);
-		return (0);
+	else
+		draw_julia(img);
+	return (0);
 }
 
 int	mouse_hook(int keycode, int x, int y, t_data *img)
 {
 	(void)x;
 	(void)y;
+	
 	if (keycode == 4)
 	{
-		img->zoom *= 1.1;
+		img->minim = img->minim * 1.1;
+		img->maxim = img->maxim * 1.1;
+		img->minre = img->minre * 1.1;
+		img->maxre = img->maxre * 1.1;
 		mlx_clear_window(img->mlx_ptr, img->win_ptr);
-		initializable_vars(img);
 		reset_hook(img);
 	}
-	else if(keycode == 5)
+	else if (keycode == 5)
 	{
-		img->zoom /= 1.1;
+		img->minim = img->minim / 1.1;
+		img->maxim = img->maxim / 1.1;
+		img->minre = img->minre / 1.1;
+		img->maxre = img->maxre / 1.1;
 		mlx_clear_window(img->mlx_ptr, img->win_ptr);
-		initializable_vars(img);
 		reset_hook(img);
 	}
 	return (0);
 }
 
-int	close_hook(void)
+int	key_hook(int keycode, t_data *img)
 {
+	if (keycode == 53)
+	{
+		mlx_destroy_window(img->mlx_ptr, img->win_ptr);
+		exit(0);
+	}
+	return (0);
+}
+
+int	close_hook(t_data *img)
+{
+	mlx_destroy_window(img->mlx_ptr, img->win_ptr);
 	exit(0);
 	return (0);
 }

@@ -6,15 +6,35 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 02:20:20 by jsantann          #+#    #+#             */
-/*   Updated: 2022/08/18 02:20:26 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:09:43 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+int	ft_isdigit(char *argv)
 {
-	if (c >= 48 && c <= 57)
+	int	i;
+	int	signal;
+
+	i = 0;
+	signal = 0;
+	while (argv[i])
 	{
-		return (1);
+		if ((argv[i] == '-' || argv[i] == '+')
+			&& argv[i] && !signal)
+		{
+				signal = 1;
+				i++;
+		}
+		else if (argv[i] >= '0' && argv[i] <= '9')
+			i++;
+		else if (argv[i] == '.' || argv[i] == ',')
+			i++;
+		else if (argv[i] >= '0' && argv[i] <= '9')
+			i++;
+		else
+			return (0);
 	}
-	return (0);
+	return (1);
 }

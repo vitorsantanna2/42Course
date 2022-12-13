@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-jesu <gde-jesu@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/22 14:50:00 by gde-jesu          #+#    #+#              #
-#    Updated: 2022/08/15 10:44:42 by jsantann         ###   ########.fr        #
+#    Created: 2022/12/12 21:02:02 by jsantann          #+#    #+#              #
+#    Updated: 2022/12/13 13:45:49 by jsantann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libft.a
 SRCS =	ft_atoi.c \
+			ft_atod.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_isalnum.c \
@@ -32,6 +33,7 @@ SRCS =	ft_atoi.c \
 			ft_strnstr.c \
 			ft_strrchr.c \
 			ft_strchr.c \
+			ft_strcmp.c \
 			ft_strncmp.c \
 			ft_strjoin.c \
 			ft_substr.c \

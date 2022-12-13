@@ -1,60 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_mandelbrot.c                                  :+:      :+:    :+:   */
+/*   draw_julia.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 21:29:28 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 16:25:45 by jsantann         ###   ########.fr       */
+/*   Created: 2022/10/29 06:30:15 by jsantann          #+#    #+#             */
+/*   Updated: 2022/12/13 19:29:59 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mandelbrot_escape(t_complex x)
+int	julia_escape(t_data *img)
 {
-	int			iterations;
-	t_complex	z;
+	int	iterations;
 
 	iterations = 0;
-	z.f = 0;
-	z.i = 0;
-	while (absolute_complex(z) < 2)
+	img->z.f = img->c.f;
+	img->z.i = img->c.i;
+	while (absolute_complex(img->z) < 2)
 	{
-		if (iterations == 150)
+		if (iterations == 300)
 			break ;
-		z = sum_complex(pow_complex(z), x);
+		img->z = julia_complex(pow_complex(img->z), img);
 		iterations++;
 	}
 	return (iterations);
 }
 
-void	draw_mandelbrot(t_data *img)
+void	draw_julia(t_data *img)
 {
+	img->vertical = 0;
 	while (img->vertical < 900)
 	{
 		img->horizont = 0;
-		img->c.i = (img->minim + img->vertical
-				* (img->maxim - img->minim) / 900);
 		while (img->horizont < 900)
 		{
+			img->c.i = (img->minim + img->vertical
+				* (img->maxim - img->minim) / 900);
 			img->c.f = img->minre + img->horizont
 				* (img->maxre - img->minre) / 900;
-			img->iterations = mandelbrot_escape(img->c);
+			img->iterations = julia_escape(img);
 			if (img->iterations == 150)
-			{
 				my_mlx_pixel_insert(img, img->horizont,
 					img->vertical, 0x000000);
-			}
 			else
 				my_mlx_pixel_insert(img, img->horizont,
 					img->vertical, color_by_iterations(img->iterations));
-			img->z.f = 0;
 			img->horizont++;
 		}
 		img->vertical++;
 	}
-	img->vertical = 0;
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img, 0, 0);
 }
