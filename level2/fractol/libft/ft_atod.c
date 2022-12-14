@@ -6,12 +6,11 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 23:24:40 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 19:51:34 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:04:33 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 double	count_int(char *str)
 {
@@ -56,6 +55,5 @@ double	ft_atod(char *str)
 	}
 	if (str[0] == '-')
 		result = result * -1;
-	printf("%f\n", result);
 	return (result);
 }

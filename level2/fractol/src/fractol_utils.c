@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 10:18:18 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 19:27:27 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:00:33 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_complex	pow_complex(t_complex z)
 void	argument_invalid(void)
 {
 	ft_printf("Error\n");
-	ft_printf("Valids Arguments: \n'./fractol Mandelbrot\n./fractol julia num1 num2\nGood Inputs to Julie: \n./fractol Julia 0 -0.8'");
+	ft_printf("Argumentos Válidos: \n");
+	ft_printf("./fractol mandelbrot \n");
+	ft_printf("./fractol julia 0 -0.8\n");
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:40:46 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 19:00:32 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:31:16 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,14 @@ int	main(int argc, char **argv)
 {
 	t_data	img;
 
-	validations(argc, argv, &img);
-	mlx_hook(img.win_ptr, 17, 0, close_hook, &img);
-	mlx_key_hook(img.win_ptr, key_hook, &img);
-	mlx_mouse_hook(img.win_ptr, mouse_hook, &img);
-	mlx_loop(img.mlx_ptr);
+	if (validations(argc, argv, &img))
+	{
+		mlx_hook(img.win_ptr, 17, 0, close_hook, &img);
+		mlx_key_hook(img.win_ptr, key_hook, &img);
+		mlx_mouse_hook(img.win_ptr, mouse_hook, &img);
+		mlx_loop(img.mlx_ptr);
+		return (free_memory(&img));
+	}
+	else
+		return (0);
 }

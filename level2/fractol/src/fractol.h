@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 09:44:40 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 19:27:45 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:20:57 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void		my_mlx_pixel_insert(t_data *data, int x, int y, int color);
 void		draw_mandelbrot(t_data *img);
 void		draw_julia(t_data *img);
 void		argument_invalid(void);
-void		validations(int argc, char **argv, t_data *img);
+int			validations(int argc, char **argv, t_data *img);
 void		start_mandelbrot(t_data *img);
 void		start_julie(t_data *img, double x, double y);
+int			free_memory(t_data *img);
 #endif

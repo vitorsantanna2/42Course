@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 06:30:15 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 19:29:59 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:54:52 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	draw_julia(t_data *img)
 		while (img->horizont < 900)
 		{
 			img->c.i = (img->minim + img->vertical
-				* (img->maxim - img->minim) / 900);
-			img->c.f = img->minre + img->horizont
-				* (img->maxre - img->minre) / 900;
+					* (img->maxim - img->minim) / 900);
+			img->c.f = 0.0 - (img->minre + img->horizont
+					* (img->maxre - img->minre) / 900);
 			img->iterations = julia_escape(img);
 			if (img->iterations == 150)
 				my_mlx_pixel_insert(img, img->horizont,

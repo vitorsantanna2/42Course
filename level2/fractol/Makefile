@@ -17,6 +17,7 @@ SRCS        :=      src/start.c \
 					src/fractol_utils.c \
 					src/hooks.c	\
 					src/colors.c \
+					src/free_memory.c \
 					src/validations.c
                           
 OBJS        := $(SRCS:.c=.o)

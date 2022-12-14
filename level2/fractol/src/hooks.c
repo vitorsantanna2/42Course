@@ -6,7 +6,7 @@
 /*   By: jsantann <jsantann@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:26:13 by jsantann          #+#    #+#             */
-/*   Updated: 2022/12/13 18:22:43 by jsantann         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:57:38 by jsantann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	mouse_hook(int keycode, int x, int y, t_data *img)
 {
 	(void)x;
 	(void)y;
-	
 	if (keycode == 4)
 	{
 		img->minim = img->minim * 1.1;
